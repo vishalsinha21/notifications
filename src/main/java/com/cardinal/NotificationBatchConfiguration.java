@@ -59,6 +59,7 @@ public class NotificationBatchConfiguration {
                 .reader(reader(dataSource))
                 .processor(processor())
                 .writer(writer())
+                .allowStartIfComplete(true)
                 .build();
     }
 
