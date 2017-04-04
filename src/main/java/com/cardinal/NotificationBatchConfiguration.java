@@ -35,6 +35,15 @@ public class NotificationBatchConfiguration {
     public DataSource dataSource;
 
     @Bean
+    public Job processUserJob() {
+        return jobBuilderFactory.get("processUserJob")
+                .incrementer(new RunIdIncrementer())
+                .flow(step1())
+                .end()
+                .build();
+    }
+
+    @Bean
     public Job importUserJob() {
         return jobBuilderFactory.get("importUserJob")
                 .incrementer(new RunIdIncrementer())
